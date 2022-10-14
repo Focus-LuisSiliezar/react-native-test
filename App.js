@@ -18,7 +18,12 @@ export default function App() {
       }]);
   };
 
-
+function deleteGoalHandler(id){
+setCourseGoals(currentCourseGoals => {
+  return currentCourseGoals.filter(
+    (goal)=> goal.id !== id);
+});
+}
 
   // VIEWS
   return (
@@ -28,7 +33,7 @@ export default function App() {
         <FlatList
           data={courseGoals}
           renderItem={(itemData) => {
-            return <GoalItem text={itemData.item.text}></GoalItem>;
+            return <GoalItem text={itemData.item.text} id={itemData.item.id} onDeleteItem={deleteGoalHandler}></GoalItem>;
           }}
           // NOTE FOR APIS
           keyExtractor={(item, index) => {
@@ -78,5 +83,5 @@ const styles = StyleSheet.create({
 //         </ScrollView>
 //     </View>
 //     </View>
-//   );
+//   );\
 // }
